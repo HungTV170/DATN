@@ -1,0 +1,113 @@
+﻿IF EXISTS (SELECT 1 FROM customers)
+BEGIN
+    PRINT 'Có ít nhất một bản ghi trong bảng customers.';
+END
+ELSE
+BEGIN
+SET IDENTITY_INSERT customers ON;
+
+
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (1, 'Jacky', 'Tethacot', '487-755-9458', 'jtethacot0@latimes.com', '27473 Victoria Hill');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (2, 'Gratia', 'Schwandt', '900-274-4140', 'gschwandt1@latimes.com', '21099 Heath Trail');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (3, 'Erv', 'Tremontana', '149-134-6503', 'etremontana2@netlog.com', '419 Caliangt Trail');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (4, 'Danice', 'Olsson', '335-888-6431', 'dolsson3@usnews.com', '8436 Crownhardt Road');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (5, 'Genevra', 'Burds', '155-260-6332', 'gburds4@wix.com', '659 Helena Plaza');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (6, 'Yvor', 'Limprecht', '422-592-6464', 'ylimprecht5@multiply.com', '479 Sutherland Drive');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (7, 'Jason', 'Dorrell', '572-619-3051', 'jdorrell6@vinaora.com', '5228 Main Way');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (8, 'Lorelle', 'Rust', '760-900-1506', 'lrust7@umn.edu', '75 Grasskamp Street');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (9, 'Chrisy', 'Missington', '402-691-9623', 'cmissington8@stanford.edu', '88516 Dorton Plaza');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (10, 'Marijo', 'Oldridge', '541-879-7856', 'moldridge9@apache.org', '0 Dixon Street');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (11, 'Sullivan', 'Hulkes', '522-275-6129', 'shulkesa@printfriendly.com', '1 Loeprich Avenue');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (12, 'Mira', 'Buret', '323-733-5622', 'mburetb@auda.org.au', '5 Huxley Place');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (13, 'Aylmar', 'Syversen', '676-390-6770', 'asyversenc@oakley.com', '1 Spenser Place');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (14, 'Carey', 'Pannaman', '935-759-8252', 'cpannamand@google.ca', '6543 Myrtle Court');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (15, 'Isidore', 'Gilling', '856-842-9764', 'igillinge@unesco.org', '706 Bunker Hill Crossing');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (16, 'Alanna', 'Fargie', '117-309-6573', 'afargief@dagondesign.com', '5737 7th Street');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (17, 'Gilberto', 'Caccavari', '216-590-7854', 'gcaccavarig@bbb.org', '922 Lindbergh Plaza');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (18, 'Beatrix', 'Brooksby', '557-791-7231', 'bbrooksbyh@google.com.au', '922 Service Plaza');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (19, 'Hoyt', 'Elkin', '761-532-9203', 'helkini@ed.gov', '655 Sundown Pass');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (20, 'Weider', 'Joplin', '660-173-4930', 'wjoplinj@businessweek.com', '645 Ruskin Terrace');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (21, 'Xerxes', 'Missenden', '166-761-0395', 'xmissendenk@typepad.com', '28 Fordem Street');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (22, 'Any', 'Reubbens', '340-865-8546', 'areubbensl@myspace.com', '6697 Crownhardt Crossing');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (23, 'Henriette', 'Bonett', '992-769-3152', 'hbonettm@liveinternet.ru', '5878 Loomis Plaza');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (24, 'Kean', 'Felgate', '720-102-5866', 'kfelgaten@engadget.com', '1 Moulton Lane');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (25, 'Lilly', 'Stearley', '749-420-8118', 'lstearleyo@ox.ac.uk', '6572 Hallows Road');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (26, 'Moses', 'Medeway', '253-701-6193', 'mmedewayp@intel.com', '6720 8th Crossing');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (27, 'Teodora', 'Biles', '994-577-3361', 'tbilesq@stanford.edu', '3 Sutherland Circle');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (28, 'Bethina', 'Guidelli', '662-865-1443', 'bguidellir@skype.com', '170 Merchant Alley');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (29, 'Loria', 'Morrilly', '441-670-5202', 'lmorrillys@pen.io', '08730 Ryan Place');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (30, 'Rita', 'Shernock', '571-469-0328', 'rshernockt@jigsy.com', '8 Tony Road');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (31, 'Der', 'Levicount', '120-738-0575', 'dlevicountu@amazon.co.jp', '5051 Maple Drive');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (32, 'Agnes', 'Bartlomiejczyk', '156-537-2923', 'abartlomiejczykv@washington.edu', '2220 Linden Point');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (33, 'Irene', 'Garwood', '554-486-3895', 'igarwoodw@google.co.uk', '607 Hintze Place');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (34, 'Cullin', 'Kruger', '335-620-7116', 'ckrugerx@pinterest.com', '8 Warbler Alley');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (35, 'Bing', 'McNabb', '942-370-4240', 'bmcnabby@howstuffworks.com', '3297 Sundown Hill');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (36, 'Joyann', 'Hupka', '985-263-8168', 'jhupkaz@1und1.de', '475 Killdeer Circle');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (37, 'Law', 'Ragate', '243-540-4232', 'lragate10@princeton.edu', '35 Mccormick Circle');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (38, 'Reynold', 'Loxley', '745-503-8740', 'rloxley11@webnode.com', '7637 Clarendon Center');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (39, 'Gibb', 'Haynesford', '407-930-5724', 'ghaynesford12@narod.ru', '553 Marcy Way');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (40, 'Selene', 'Steynor', '410-552-2104', 'ssteynor13@networksolutions.com', '152 Declaration Drive');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (41, 'Maryrose', 'McMenemy', '516-249-0750', 'mmcmenemy14@disqus.com', '36 Valley Edge Alley');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (42, 'Desirae', 'Docker', '258-228-4044', 'ddocker15@qq.com', '66 Anthes Drive');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (43, 'Blancha', 'Lakeman', '625-937-5565', 'blakeman16@yelp.com', '33 Thackeray Alley');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (44, 'Laina', 'Durand', '707-835-3531', 'ldurand17@usa.gov', '3 Vera Alley');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (45, 'Lazar', 'Woodvine', '588-315-6995', 'lwoodvine18@smugmug.com', '88 Gateway Plaza');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (46, 'Tatum', 'Whatford', '404-150-7301', 'twhatford19@sbwire.com', '432 Village Street');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (47, 'Olimpia', 'Soutter', '634-884-5949', 'osoutter1a@edublogs.org', '127 Muir Street');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (48, 'Candie', 'Ballefant', '581-992-2349', 'cballefant1b@illinois.edu', '68 Sullivan Street');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (49, 'Gayelord', 'Dessent', '784-608-7254', 'gdessent1c@multiply.com', '47624 Sugar Street');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (50, 'Titus', 'Starkey', '814-326-6031', 'tstarkey1d@hugedomains.com', '866 Northview Plaza');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (51, 'Marylou', 'Kiehne', '421-887-0284', 'mkiehne1e@businessinsider.com', '52300 John Wall Pass');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (52, 'Ame', 'Beneyto', '663-143-9467', 'abeneyto1f@shinystat.com', '616 Morning Pass');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (53, 'Carilyn', 'Tibbetts', '721-657-4731', 'ctibbetts1g@omniture.com', '5 Bunting Court');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (54, 'Zebedee', 'Lochet', '346-865-7218', 'zlochet1h@ca.gov', '21841 Dahle Trail');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (55, 'Thomasina', 'Baily', '848-343-0669', 'tbaily1i@youtu.be', '5518 Stang Point');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (56, 'Tomlin', 'Willmot', '278-461-4536', 'twillmot1j@php.net', '13 Heath Alley');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (57, 'Constantine', 'Jannex', '785-364-2860', 'cjannex1k@com.com', '4 Meadow Ridge Way');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (58, 'Coreen', 'Bowker', '267-122-2509', 'cbowker1l@e-recht24.de', '1 Brickson Park Junction');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (59, 'Alameda', 'Nannizzi', '846-695-5388', 'anannizzi1m@wsj.com', '62 Almo Trail');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (60, 'Kessia', 'Rodolf', '571-140-7339', 'krodolf1n@dell.com', '7430 Nobel Place');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (61, 'Rodolfo', 'Robertson', '283-714-4370', 'rrobertson1o@symantec.com', '05 Village Green Avenue');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (62, 'Ivett', 'Arenson', '770-736-8151', 'iarenson1p@pinterest.com', '6224 Calypso Place');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (63, 'Tirrell', 'Skittreal', '507-754-6524', 'tskittreal1q@indiegogo.com', '834 Crownhardt Drive');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (64, 'Abner', 'McBain', '705-620-4806', 'amcbain1r@cornell.edu', '801 Eastwood Crossing');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (65, 'Nannette', 'Carne', '814-483-2547', 'ncarne1s@harvard.edu', '473 Dahle Drive');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (66, 'Solly', 'Dunkley', '454-850-8785', 'sdunkley1t@github.com', '65741 Thierer Place');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (67, 'Ree', 'Blasli', '558-359-5210', 'rblasli1u@marketwatch.com', '583 Upham Drive');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (68, 'Flora', 'Wilder', '838-860-7673', 'fwilder1v@wired.com', '6 Del Sol Point');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (69, 'Hall', 'Pressdee', '990-801-8297', 'hpressdee1w@about.me', '6 Superior Avenue');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (70, 'Lynna', 'Powrie', '681-737-7201', 'lpowrie1x@acquirethisname.com', '34138 Brown Alley');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (71, 'Aguste', 'Alexsandrov', '663-206-6933', 'aalexsandrov1y@storify.com', '2532 Eagle Crest Park');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (72, 'Byron', 'Shenfish', '368-551-5749', 'bshenfish1z@springer.com', '28686 Old Gate Trail');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (73, 'Kerstin', 'Muncie', '906-395-7813', 'kmuncie20@bloglines.com', '7442 John Wall Pass');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (74, 'Vin', 'Emms', '585-502-9729', 'vemms21@indiatimes.com', '86 Quincy Trail');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (75, 'Scot', 'Maitland', '232-270-7874', 'smaitland22@photobucket.com', '78 Alpine Court');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (76, 'Melita', 'Messingham', '827-533-9574', 'mmessingham23@histats.com', '8397 Beilfuss Trail');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (77, 'Nicolette', 'Blaydes', '393-282-3909', 'nblaydes24@gov.uk', '790 Moulton Junction');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (78, 'Missie', 'McCrum', '461-150-8997', 'mmccrum25@accuweather.com', '6 Maryland Street');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (79, 'Cosme', 'Burnapp', '227-871-7823', 'cburnapp26@state.tx.us', '36263 Columbus Center');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (80, 'Wright', 'Keyson', '185-692-1181', 'wkeyson27@businessweek.com', '647 Graceland Pass');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (81, 'Karmen', 'Quarles', '302-324-6744', 'kquarles28@ameblo.jp', '63 Crest Line Plaza');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (82, 'Jesselyn', 'Oade', '583-549-5907', 'joade29@webnode.com', '2 Westridge Plaza');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (83, 'Vida', 'Radleigh', '907-718-1961', 'vradleigh2a@shop-pro.jp', '21300 Menomonie Road');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (84, 'Winn', 'Cohane', '279-140-9090', 'wcohane2b@shinystat.com', '195 Crowley Point');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (85, 'Olimpia', 'Saphin', '291-673-1135', 'osaphin2c@ifeng.com', '1 Prentice Drive');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (86, 'Rafaela', 'McReynold', '767-972-3094', 'rmcreynold2d@symantec.com', '19183 Kedzie Point');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (87, 'Emlynne', 'Adamsson', '395-773-9624', 'eadamsson2e@mediafire.com', '3260 Cherokee Avenue');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (88, 'Franklin', 'Rann', '265-152-5091', 'frann2f@1688.com', '9093 Annamark Junction');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (89, 'Odele', 'Dugget', '490-526-8261', 'odugget2g@marriott.com', '6 Myrtle Terrace');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (90, 'Sharia', 'Hince', '883-323-0692', 'shince2h@vistaprint.com', '88 Briar Crest Trail');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (91, 'Ralina', 'Torbett', '606-380-3845', 'rtorbett2i@typepad.com', '213 Corry Road');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (92, 'Beckie', 'Errol', '365-232-7572', 'berrol2j@linkedin.com', '5186 Mcguire Avenue');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (93, 'Zoe', 'Spedroni', '859-427-5999', 'zspedroni2k@printfriendly.com', '01 Maywood Crossing');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (94, 'Ulla', 'Kingerby', '892-398-0940', 'ukingerby2l@bbb.org', '22 Larry Center');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (95, 'Abbe', 'aManger', '589-928-0654', 'aamanger2m@4shared.com', '8111 Hermina Pass');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (96, 'Dorene', 'Rossoni', '231-330-1660', 'drossoni2n@123-reg.co.uk', '8631 Shopko Lane');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (97, 'Nari', 'Nevet', '800-805-7234', 'nnevet2o@businessweek.com', '16 Hovde Center');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (98, 'Diego', 'McLeese', '146-520-1224', 'dmcleese2p@ow.ly', '09375 La Follette Point');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (99, 'Gertie', 'Hawsby', '440-214-3926', 'ghawsby2q@mediafire.com', '86796 Dovetail Court');
+insert into customers (CustomerId, FirstName, LastName, PhoneNumber, Email, Address) values (100, 'Ciro', 'Doag', '246-102-9420', 'cdoag2r@cnn.com', '424 Paget Trail');
+
+
+SET IDENTITY_INSERT customers OFF;
+END

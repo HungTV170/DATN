@@ -51,12 +51,12 @@ const tableList = ({
                   <strong>Số lượng chỗ:</strong> {apiData.seats} <i className="bi bi-person"></i>
                 </Card.Text>
                 <Card.Text>
-                <strong>Tình trạng:</strong> {apiData.status}
+                {/* <strong>Tình trạng:</strong> {apiData.status}
                   {apiData.status === 'Available' ? (
                     <i className="bi bi-check-circle" style={{ color: 'green' }}></i> // Biểu tượng hoàn thành
                   ) : (
                     <i className="bi bi-hourglass" style={{ color: 'orange' }}></i> // Biểu tượng đang xử lý
-                  )}
+                  )} */}
                 </Card.Text>
                 <Link to={`detail/${apiData.Id}?date=${new Date().toLocaleDateString()}`}>
                   <Button variant="outline-primary">Đặt Bàn</Button>

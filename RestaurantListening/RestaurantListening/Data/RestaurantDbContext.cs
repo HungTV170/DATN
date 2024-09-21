@@ -24,6 +24,8 @@ namespace RestaurantListening.Data
         public DbSet<MenuItem> menuItems { get; set; }
         public DbSet<OrderItem> orderItems { get; set; }
         public DbSet<Table> tables { get; set; }
+
+        //public DbSet<OrderTable> orderTables { get; set; }
         public DbSet<Payment> payments { get; set; }
 
         public DbSet<Reservation> reservations { get; set; }

@@ -3,7 +3,7 @@ import { DataTable } from 'simple-datatables';
 import 'simple-datatables/dist/style.css';
 import { useApiServices } from '../../services/Api-services';
 import Loading from '../../components/public-component/loading';
-import Error from '../../components/public-component/error';
+import Error from '../../components/public-component/ErrorComponents';
 import { useNavigate } from 'react-router-dom';
 
 const List = ({ options ,renderChild}) => {
@@ -46,7 +46,7 @@ const List = ({ options ,renderChild}) => {
         dataTable.destroy();
       }
     };
-  }, [apiDatas]);
+  }, [apiDatas,loading]);
 
   const handleTableClick = (event) => {
     const target = event.target;
@@ -84,7 +84,7 @@ const List = ({ options ,renderChild}) => {
   };
 
   if (error) {
-    return <Error/>
+    return <Error message={error}/>
   }
 
   if (loading) {

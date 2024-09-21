@@ -22,10 +22,6 @@ namespace RestaurantListening.Services
             int tableId = ReservationDTO.TableId; 
             int number = ReservationDTO.NumberOfPeople;
             var table = await _unitOfWork.Tables.Get(q => q.TableId == tableId,new List<string> {  "Reservations" });
-            if(number > table.Seats)
-            {
-                return false;
-            }
             TimeInterval newReservation = new TimeInterval { 
                 StartTime = ReservationDTO.ReservationDate,
                 Duration = ReservationDTO.ReservationTime};
@@ -85,19 +81,25 @@ namespace RestaurantListening.Services
 
             return gaps;
         }
-        public async Task<List<List<TimeInterval>>> GetAllTimeInterval(DateTime date)
+        public async Task<List<TableTimeInterval>> GetAllTimeInterval(DateTime date)
         {
-            List<List<TimeInterval>> result = new List<List<TimeInterval>>();
+            List<TableTimeInterval> result = new List<TableTimeInterval>();
             DateTime day = date.Date;
             var items = await _unitOfWork.Tables.GetAll();
             foreach (var item in items)
             {
                 int id = item.TableId;
                 var timeInterval = await GetTimeInterval(id, day);
-                result.Add(timeInterval);
+                result.Add(new TableTimeInterval { TimeIntervals=timeInterval, Seats=item.Seats });
             }
 
             return result;
         }
+    }
+
+    public class TableTimeInterval
+    {
+        public List<TimeInterval> TimeIntervals { get; set; }
+        public int Seats { get; set; }
     }
 }

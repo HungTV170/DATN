@@ -8,7 +8,6 @@ import React, { useEffect,useState } from 'react';
 import { Form, Button, Row, Col, Card ,Tab,Nav} from 'react-bootstrap';
 const UpdItem = ({handleApiDataChange,localApiData}) =>{
     const {GetAll,apiDatas, error, loading} = useApiServices(opt.url, opt.transformCustomerData);
-
     const [order,setOrder] = useState({});
     const [orderItem,setOrderItem] = useState([]);
     let InitialFields =localApiData.orderItems.map(e=>({
@@ -70,7 +69,7 @@ const UpdItem = ({handleApiDataChange,localApiData}) =>{
         <Col xs={12} md={4} lg={4}>
             <Card>
                 <Card.Body>
-                  <Card.Title>Gọi Món</Card.Title>
+                  <Card.Title>Chi tiết đơn</Card.Title>
                   <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                     <Row>
                         <Tab.Content>

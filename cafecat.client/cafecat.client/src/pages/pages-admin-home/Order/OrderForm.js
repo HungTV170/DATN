@@ -65,7 +65,7 @@ const OrderForm = ({setOrder}) => {
       ["tableId"]: '',
     });
     console.log(formData);
-    setTable(false);
+    setTable(!isTable);
   }
 
   return (
@@ -155,7 +155,10 @@ const OrderForm = ({setOrder}) => {
             đặt bàn
           </Link>
           {" hoặc "}
-          <a href="#" onClick={setNoTable}>Mang Về?</a>
+          {isTable?
+          <a href="#" onClick={setNoTable}>Mang Về?</a>:
+          <a href="#" onClick={setNoTable}>Đã có bàn</a>
+          }
         </i>
       </Form.Group>
 

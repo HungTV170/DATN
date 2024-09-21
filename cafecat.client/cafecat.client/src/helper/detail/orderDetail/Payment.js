@@ -13,6 +13,7 @@ function Payment({localApiData}) {
   const [show, setShow] = useState(false);
   const [selectedOption,setSelectedOption] =useState("Tiền Mặt");
   const amount = localApiData.orderItems.reduce((result,item)=>{return result+item.quantity*item.price;},0);
+
   const orderId = localApiData.Id;
   const [FormData,setFormData] = useState({
     orderId:orderId,
@@ -20,6 +21,7 @@ function Payment({localApiData}) {
     paymentMethod:selectedOption
   })
 
+  console.log(amount);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -27,11 +29,11 @@ function Payment({localApiData}) {
 
   const handleSubmit = (event) => {
     const newFormData = {
-      ...FormData,
+    orderId:orderId,
+    amount:amount,
       ["paymentMethod"]: selectedOption
     };
     setFormData(newFormData);
-    console.log(newFormData)
     const token = localStorage.getItem('jwt');
     fetch(`${process.env.REACT_APP_API_PATH}${process.env.REACT_APP_COMPONENT_PAYMENT}`, {
       method: 'POST',
@@ -39,7 +41,11 @@ function Payment({localApiData}) {
         'Authorization': `Bearer ${token}`, 
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(FormData)
+      body: JSON.stringify({
+        orderId:orderId,
+        amount:amount,
+        paymentMethod:selectedOption
+      })
     }).then(response =>{
       if(response.ok){
         alert("Thanh toán thành công");

@@ -22,10 +22,11 @@ function IForm({ col ,Id, method ,apiData ,onApiDataChange,}) {
             [key]: content
         };
         setFormData(newFormData);
+
     }; 
 
     
-    const handleSubmit = (event) => {
+    const handleSubmit = (event) => {        console.log(formData);
       const form = event.currentTarget;
       if (form.checkValidity() === false) {
         event.preventDefault();

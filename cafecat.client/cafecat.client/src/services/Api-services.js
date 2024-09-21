@@ -7,6 +7,17 @@ export const useApiServices = (baseUrl ,transformData ) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const token = localStorage.getItem('jwt');
+
+  const resolveError = (errorData)=>{
+    console.log(errorData);
+    if (errorData && errorData.errors) {
+      const errorMessages = Object.keys(errorData.errors).map(field => {
+        return `${field}: ${errorData.errors[field].join(', ')}`;
+      }).join('\n');
+      return `Validation Errors:\n${errorMessages}`;
+    }
+    return errorData.message || 'Bad Request: Please check your input and try again.';
+  }
   const GetAll = () => {
     setLoading(true);
     fetch(`${baseUrl}`,{
@@ -18,10 +29,16 @@ export const useApiServices = (baseUrl ,transformData ) => {
   })
       .then(response => {
         if(response.status === 401){
-          throw new Error(`You need to log in again or you don't have enough permissions to access this resource ...`)
+          throw new Error(`You need to log in to access this resource ...`)
         }
         if(response.status === 403){
-          throw new Error(`You need to log in again or you don't have enough permissions to access this resource ...`)
+          throw new Error(`you don't have enough permissions to access this resource ...`)
+        }
+        if (response.status === 400) {
+          return response.json().then(errorData => {
+            const errorMessage = resolveError(errorData);
+            alert(errorMessage);
+          });  
         }
         if (!response.ok) {
           throw new Error('Network response was not ok: ' + response.statusText);
@@ -29,7 +46,9 @@ export const useApiServices = (baseUrl ,transformData ) => {
         return response.json();
       })
       .then(data => {
-        setApiDatas(transformData(data));
+        if (data) {
+          setApiDatas(transformData(data));
+        }
         setLoading(false);
       })
       .catch(err => {
@@ -51,10 +70,16 @@ export const useApiServices = (baseUrl ,transformData ) => {
   })
       .then(response => {
         if(response.status === 401){
-          throw new Error(`You need to log in again or you don't have enough permissions to access this resource ...`)
+          throw new Error(`You need to log in to access this resource ...`)
         }
         if(response.status === 403){
-          throw new Error(`You need to log in again or you don't have enough permissions to access this resource ...`)
+          throw new Error(`you don't have enough permissions to access this resource ...`)
+        }
+        if (response.status === 400) {
+          return response.json().then(errorData => {
+            const errorMessage = resolveError(errorData);
+            alert(errorMessage);
+          }); 
         }
         if (!response.ok) {
           throw new Error('Network response was not ok: ' + response.statusText);
@@ -62,7 +87,10 @@ export const useApiServices = (baseUrl ,transformData ) => {
         return response.json();
       })
       .then(data => {
-        setApiData(transformData(data));
+        if(data){
+          setApiData(transformData(data));
+        }
+
         setLoading(false);
       })
       .catch(err => {
@@ -94,10 +122,18 @@ export const useApiServices = (baseUrl ,transformData ) => {
     })
     .then(response => {
       if(response.status === 401){
-        throw new Error(`You need to log in again or you don't have enough permissions to access this resource ...`)
+        throw new Error(`You need to log in to access this resource ...`)
       }
       if(response.status === 403){
-        throw new Error(`You need to log in again or you don't have enough permissions to access this resource ...`)
+        throw new Error(`you don't have enough permissions to access this resource ...`)
+      }
+      if (response.status === 400) { 
+        //alert('Bad Request: Please check your input and try again.');
+        //window.location.reload();
+        return response.json().then(errorData => {
+          const errorMessage = resolveError(errorData);
+          alert(errorMessage);
+        }); 
       }
       if (response.status === 201) {
         alert("Tạo thành công");
@@ -115,13 +151,15 @@ export const useApiServices = (baseUrl ,transformData ) => {
       
     })
     .then(data => {
-      setApiDatas(prev => {        
-        if (Array.isArray(prev)) {
-          return [...prev, transformData(data)];
-        } else {
-          return [transformData(data)];
-        }
-      });
+      if(data){
+        setApiDatas(prev => {        
+          if (Array.isArray(prev)) {
+            return [...prev, transformData(data)];
+          } else {
+            return [transformData(data)];
+          }
+        });
+      }
       setLoading(false);   
     })
     .catch(err => {
@@ -152,10 +190,16 @@ export const useApiServices = (baseUrl ,transformData ) => {
     return fetch(`${baseUrl}/${id}`, options)
         .then(response => {
           if(response.status === 401){
-            throw new Error(`You need to log in again or you don't have enough permissions to access this resource ...`)
+            throw new Error(`You need to log in to access this resource ...`)
           }
           if(response.status === 403){
-            throw new Error(`You need to log in again or you don't have enough permissions to access this resource ...`)
+            throw new Error(`you don't have enough permissions to access this resource ...`)
+          }
+          if (response.status === 400) {
+            return response.json().then(errorData => {
+              const errorMessage = resolveError(errorData);
+              alert(errorMessage);
+            }); 
           }
             if (response.ok) {
                 alert("Cập nhật thành công");
@@ -197,10 +241,16 @@ export const useApiServices = (baseUrl ,transformData ) => {
     })
     .then(response => {
       if(response.status === 401){
-        throw new Error(`You need to log in again or you don't have enough permissions to access this resource ...`)
+        throw new Error(`You need to log in to access this resource ...`)
       }
       if(response.status === 403){
-        throw new Error(`You need to log in again or you don't have enough permissions to access this resource ...`)
+        throw new Error(`you don't have enough permissions to access this resource ...`)
+      }
+      if (response.status === 400) {
+        return response.json().then(errorData => {
+          const errorMessage = resolveError(errorData);
+          alert(errorMessage);
+        }); 
       }
       if (response.status == 204) {
         alert("Xóa thành công");
@@ -209,6 +259,7 @@ export const useApiServices = (baseUrl ,transformData ) => {
           const updatedDatas = prev.filter(c => c.Id !== Id);
           return updatedDatas;
         }
+      
 
         );
         setLoading(false);

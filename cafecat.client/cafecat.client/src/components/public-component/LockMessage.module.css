@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+/* Căn giữa toàn bộ container */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70vh; /* Đảm bảo chiều cao của container bằng 100% màn hình */
+  background: linear-gradient(to bottom right, #EEE, #AAA); /* Tạo background */
+  font-family: 'Lato', sans-serif; /* Font chữ Lato */
+}
+
+/* CSS cho biểu tượng khóa */
+.lock {
+  border-radius: 5px;
+  width: 60px; /* Điều chỉnh chiều rộng */
+  height: 50px; /* Điều chỉnh chiều cao */
+  background-color: #333;
+  animation: dip 1s;
+  animation-delay: 1.5s;
+  position: relative;
+  margin-bottom: 20px; /* Tạo khoảng cách giữa khóa và thông báo */
+}
+
+.lock::before,
+.lock::after {
+  content: '';
+  position: absolute;
+  border-left: 5px solid #333;
+  height: 37px;
+  width: 25px;
+  left: calc(50% - 12.5px);
+}
+
+.lock::before {
+  
+  top: -30px;
+  border: 5px solid #333;
+  border-bottom-color: transparent;
+  border-radius: 15px 15px 0 0;
+  height: 40px;
+  animation: lock 2s, spin 2s;
+}
+
+.lock::after {
+  top: -10px;
+  border-right: 5px solid transparent;
+  animation: spin 2s;
+}
+
+/* Phong cách cho thông báo */
+.message {
+  text-align: center;
+}
+
+@keyframes lock {
+  0% {
+    top: -45px;
+  }
+  65% {
+    top: -45px;
+  }
+  100% {
+    top: -30px;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: scaleX(-1);
+    left: calc(50% - 30px);
+  }
+  65% {
+    transform: scaleX(1);
+    left: calc(50% - 12.5px);
+  }
+}
+
+@keyframes dip {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useApiServices } from '../../services/Api-services';
 import Loading from '../../components/public-component/loading';
-import Error from '../../components/public-component/error';
+import Error from '../../components/public-component/ErrorComponents';
 
 
 const Detail = ({ options, renderChild }) => {
@@ -32,7 +32,7 @@ const Detail = ({ options, renderChild }) => {
   };
 
   if (error) {
-    return <Error/>
+    return <Error message={error}/>
   }
 
   if (loading) {

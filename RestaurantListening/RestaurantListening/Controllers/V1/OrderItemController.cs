@@ -8,6 +8,8 @@ using RestaurantListening.Data;
 using RestaurantListening.Services;
 using System.Collections.Generic;
 using System.Net.WebSockets;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
 namespace RestaurantListening.Controllers.V1
 {
@@ -87,6 +89,21 @@ namespace RestaurantListening.Controllers.V1
 
                 return Ok(_mapper.Map < List < OrderItemDTO >> (ListOrderItem));
             }
+            catch (DbUpdateException ex) when (ex.InnerException is SqlException sqlEx)
+            {
+                switch (sqlEx.Number)
+                {
+                    case 547:
+                        return BadRequest(new { message = "Tham chiếu không hợp lệ trong khóa ngoại. Bản ghi liên quan không tồn tại." });
+                    case 2627:
+                    case 2601:
+                        return BadRequest(new { message = "Dữ liệu đã tồn tại hoặc có lỗi khác khi xóa bản ghi." });
+                    case 235:
+                        return BadRequest(new { message = "Lỗi ràng buộc dữ liệu. Vui lòng kiểm tra dữ liệu." });
+                    default:
+                        return StatusCode(500, "Lỗi máy chủ. Vui lòng thử lại sau.");
+                }
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Somethng Went Wrong in the {nameof(CreateOrderItem)}");
@@ -123,6 +140,21 @@ namespace RestaurantListening.Controllers.V1
 
                 return NoContent();
             }
+            catch (DbUpdateException ex) when (ex.InnerException is SqlException sqlEx)
+            {
+                switch (sqlEx.Number)
+                {
+                    case 547:
+                        return BadRequest(new { message = "Tham chiếu không hợp lệ trong khóa ngoại. Bản ghi liên quan không tồn tại." });
+                    case 2627:
+                    case 2601:
+                        return BadRequest(new { message = "Dữ liệu đã tồn tại hoặc có lỗi khác khi xóa bản ghi." });
+                    case 235:
+                        return BadRequest(new { message = "Lỗi ràng buộc dữ liệu. Vui lòng kiểm tra dữ liệu." });
+                    default:
+                        return StatusCode(500, "Lỗi máy chủ. Vui lòng thử lại sau.");
+                }
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Something Went Wrong in the {nameof(UpdateOrderItem)}");
@@ -152,6 +184,21 @@ namespace RestaurantListening.Controllers.V1
 
 
                 return NoContent();
+            }
+            catch (DbUpdateException ex) when (ex.InnerException is SqlException sqlEx)
+            {
+                switch (sqlEx.Number)
+                {
+                    case 547:
+                        return BadRequest(new { message = "Tham chiếu không hợp lệ trong khóa ngoại. Bản ghi liên quan không tồn tại." });
+                    case 2627:
+                    case 2601:
+                        return BadRequest(new { message = "Dữ liệu đã tồn tại hoặc có lỗi khác khi xóa bản ghi." });
+                    case 235:
+                        return BadRequest(new { message = "Lỗi ràng buộc dữ liệu. Vui lòng kiểm tra dữ liệu." });
+                    default:
+                        return StatusCode(500, "Lỗi máy chủ. Vui lòng thử lại sau.");
+                }
             }
             catch (Exception ex)
             {

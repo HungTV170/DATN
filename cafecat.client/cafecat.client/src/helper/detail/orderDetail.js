@@ -10,6 +10,7 @@ import ListFood from './orderDetail/ListFood';
 import DetailOrder from './orderDetail/DetailOrder';
 import UpdItem from './orderDetail/UpdItem';
 import Payment from './orderDetail/Payment';
+import OrderTable from './orderDetail/OrderTable';
 const orderDetail = ({ localApiData, formOptions,UpdateById, handleApiDataChange }) => {
     return (
       <Container>
@@ -47,6 +48,9 @@ const orderDetail = ({ localApiData, formOptions,UpdateById, handleApiDataChange
                   <Tab eventKey="orderItems" title="DS Món Ăn">
                     <ListFood localApiData = {localApiData}/>
                   </Tab>
+                  {/* <Tab eventKey="OrderTable" title="DS Bàn">   
+                    <OrderTable table={localApiData.table}/>
+                  </Tab> */}
                   <Tab eventKey="payment" title="Thanh Toán">
                     {/* <div>
                       { localApiData.payment == null?

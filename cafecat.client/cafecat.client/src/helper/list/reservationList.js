@@ -1,7 +1,10 @@
 import Modal from '../../components/public-component/modal';
 import IForm from '../../components/public-component/form';
 import './../../assets/css/customerStyle.css';
-const customerList = ({ 
+import { Card } from 'react-bootstrap';
+import FreeTime from '../../pages/pages-admin-home/reversation/FreeTime';
+
+const CustomerList = ({ 
   handleTableClick, 
   apiDatas,
   modalTitle, 
@@ -103,8 +106,13 @@ const customerList = ({
     </div>
   </div>
 </div>
+<Card>
+  <Card.Body>
+  <FreeTime dateTime={new Date().toLocaleDateString('en-CA')}/>
+  </Card.Body>
+</Card>
 </>
     )
 }
 
-export default customerList;
+export default CustomerList;

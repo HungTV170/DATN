@@ -1,5 +1,6 @@
 import {useLogout} from '../../../services/logout-service';
 import {useEffect} from "react";
+import Search from "../../../components/public-component/Search";
 const Header = ({data})=>{
   const { logout } = useLogout();
 
@@ -24,13 +25,15 @@ const Header = ({data})=>{
             <i className="bi bi-list toggle-sidebar-btn"></i>
           </div>{/* <!-- End Logo --> */}
       
-          <div className="search-bar">
+          {/* <div className="search-bar">
             <form className="search-form d-flex align-items-center" method="POST" action="#">
               <input type="text" name="query" placeholder="Search" title="Enter search keyword"/>
               <button type="submit" title="Search"><i className="bi bi-search"></i></button>
             </form>
-          </div>{/* <!-- End Search Bar --> */}
+          </div> */}
+          {/* <!-- End Search Bar --> */}
       
+          <Search/>
           <nav className="header-nav ms-auto">
             <ul className="d-flex align-items-center">
       

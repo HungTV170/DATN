@@ -9,13 +9,12 @@ const Confirm = ({ order, orderItem }) => {
     const addAlert = useAlert();
     function sendData() {
         addAlert(`đang thực hiện yêu cầu `, '4');
-        var orderTable = [];
-        if(order.tableId !== ''){
-            orderTable = order.tableId.split(',').map( e =>({
-                tableId: e
-            }))
-        }
-
+        var orderTable = [];console.log(order);
+        if (order.tableId && typeof order.tableId === 'string') {
+            orderTable = order.tableId.split(',').map(e => ({
+                tableId: e.trim()
+            }));
+        } 
         const ListItem = orderItem.map(e => ({
             itemId: e.id,
             quantity: e.value,

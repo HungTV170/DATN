@@ -3,6 +3,8 @@ using Marvin.Cache.Headers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using RestaurantListening.Data;
 using RestaurantListening.IRepository;
 using RestaurantListening.Models;
@@ -83,19 +85,18 @@ namespace RestaurantListening.Controllers.V1
 
 
                 var MenuItem = _mapper.Map<MenuItem>(MenuItemDTO);
-                var ItemName = MenuItem.Name;
-                var HasName = await _unitOfWork.MenuItems.Get(c => c.Name.Equals(ItemName));
+                var ItemName = MenuItem.Name.Trim();
+                var HasName = await _unitOfWork.MenuItems.Get(c => c.Name.ToLower().Equals(ItemName.ToLower()));
                 if (HasName!= null)
                 {
-                    ModelState.AddModelError("Check", $"Already existed food :{ItemName}");
-                    return BadRequest(ModelState);
+                    return BadRequest(new { message = $"Đã tồn tại món ăn {HasName.Name}." });
                 }
 
                 if (MenuItemDTO.ImgFile != null)
                 {
                     if (MenuItemDTO.ImgFile.Length > 1 * 2024 * 2024)
                     {
-                        return BadRequest("File size should not exceed 1 MB");
+                        return BadRequest(new { message = "Dữ liệu đã tồn tại hoặc có lỗi khác khi xóa bản ghi." });
                     }
                     string[] allowedFileExtensions = [".jpg", ".ipeg", ".png"];
                     string createdImgName = await _fileService.SaveFileAsync(
@@ -108,6 +109,21 @@ namespace RestaurantListening.Controllers.V1
                 await _unitOfWork.Save();
 
                 return CreatedAtRoute("GetMenuItem", new { id = MenuItem.ItemId }, MenuItem);
+            }
+            catch (DbUpdateException ex) when (ex.InnerException is SqlException sqlEx)
+            {
+                switch (sqlEx.Number)
+                {
+                    case 547:
+                        return BadRequest(new { message = "Tham chiếu không hợp lệ trong khóa ngoại. Bản ghi liên quan không tồn tại." });
+                    case 2627:
+                    case 2601:
+                        return BadRequest(new { message = "Dữ liệu đã tồn tại hoặc có lỗi khác khi xóa bản ghi." });
+                    case 235:
+                        return BadRequest(new { message = "Lỗi ràng buộc dữ liệu. Vui lòng kiểm tra dữ liệu." });
+                    default:
+                        return StatusCode(500, "Lỗi máy chủ. Vui lòng thử lại sau.");
+                }
             }
             catch (Exception ex)
             {
@@ -145,7 +161,7 @@ namespace RestaurantListening.Controllers.V1
                 {
                     if (MenuItemDTO.ImgFile.Length > 1 * 2024 * 2024)
                     {
-                        return BadRequest("File size should not exceed 1 MB");
+                        return BadRequest(new { message = "Dữ liệu đã tồn tại hoặc có lỗi khác khi xóa bản ghi." });
                     }
                     string[] allowedFileExtensions = [".jpg", ".ipeg", ".png"];
                     string createdImgName = await _fileService.SaveFileAsync(
@@ -171,6 +187,21 @@ namespace RestaurantListening.Controllers.V1
                     _fileService.DeleteFile(oldImg);
                 }
                 return Ok(MenuItem);
+            }
+            catch (DbUpdateException ex) when (ex.InnerException is SqlException sqlEx)
+            {
+                switch (sqlEx.Number)
+                {
+                    case 547:
+                        return BadRequest(new { message = "Tham chiếu không hợp lệ trong khóa ngoại. Bản ghi liên quan không tồn tại." });
+                    case 2627:
+                    case 2601:
+                        return BadRequest(new { message = "Dữ liệu đã tồn tại hoặc có lỗi khác khi xóa bản ghi." });
+                    case 235:
+                        return BadRequest(new { message = "Lỗi ràng buộc dữ liệu. Vui lòng kiểm tra dữ liệu." });
+                    default:
+                        return StatusCode(500, "Lỗi máy chủ. Vui lòng thử lại sau.");
+                }
             }
             catch (Exception ex)
             {
@@ -209,6 +240,21 @@ namespace RestaurantListening.Controllers.V1
 
 
                 return NoContent();
+            }
+            catch (DbUpdateException ex) when (ex.InnerException is SqlException sqlEx)
+            {
+                switch (sqlEx.Number)
+                {
+                    case 547:
+                        return BadRequest(new { message = "Tham chiếu không hợp lệ trong khóa ngoại. Bản ghi liên quan không tồn tại." });
+                    case 2627:
+                    case 2601:
+                        return BadRequest(new { message = "Dữ liệu đã tồn tại hoặc có lỗi khác khi xóa bản ghi." });
+                    case 235:
+                        return BadRequest(new { message = "Lỗi ràng buộc dữ liệu. Vui lòng kiểm tra dữ liệu." });
+                    default:
+                        return StatusCode(500, "Lỗi máy chủ. Vui lòng thử lại sau.");
+                }
             }
             catch (Exception ex)
             {

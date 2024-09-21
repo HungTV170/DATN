@@ -3,6 +3,8 @@ using Marvin.Cache.Headers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using RestaurantListening.Data;
 using RestaurantListening.IRepository;
 using RestaurantListening.Models;
@@ -35,7 +37,9 @@ namespace RestaurantListening.Controllers.V1
         {
             try
             {
-                var Reservations = await _unitOfWork.Reservations.GetAll(requestParams);
+                Func<IQueryable<Reservation>, IOrderedQueryable<Reservation>> orderBy = q => q.OrderBy(p => p.ReservationId);
+
+                var Reservations = await _unitOfWork.Reservations.GetAll(null, orderBy);
                 var results = _mapper.Map<ICollection<ReservationDTO>>(Reservations);
                 return Ok(results);
             }
@@ -75,15 +79,30 @@ namespace RestaurantListening.Controllers.V1
             }
             if (!await _reservationService.CheckNewReservation(ReservationDTO))
             {
-                return BadRequest(new { message = "Số người vượt quá hoặc thời gian không hợp lệ" });
+                return BadRequest(new { message = "Thời gian đặt bàn bị trùng" });
             }
             try
             {
                 var Reservation = _mapper.Map<Reservation>(ReservationDTO);
                 await _unitOfWork.Reservations.Insert(Reservation);
                 await _unitOfWork.Save();
-
-                return CreatedAtRoute("GetReservation", new { id = Reservation.ReservationId }, Reservation);
+                var reservationDTO = _mapper.Map<ReservationDTO>(Reservation);
+                return CreatedAtRoute("GetReservation", new { id = Reservation.ReservationId }, reservationDTO);
+            }
+            catch (DbUpdateException ex) when (ex.InnerException is SqlException sqlEx)
+            {
+                switch (sqlEx.Number)
+                {
+                    case 547:
+                        return BadRequest(new { message = "Tham chiếu không hợp lệ trong khóa ngoại. Bản ghi liên quan không tồn tại." });
+                    case 2627:
+                    case 2601:
+                        return BadRequest(new { message = "Tham chiếu không hợp lệ trong khóa ngoại. Bản ghi liên quan không tồn tại." });
+                    case 235:
+                        return BadRequest(new { message = "Tham chiếu không hợp lệ trong khóa ngoại. Bản ghi liên quan không tồn tại." });
+                    default:
+                        return StatusCode(500, "Lỗi máy chủ. Vui lòng thử lại sau.");
+                }
             }
             catch (Exception ex)
             {
@@ -121,6 +140,21 @@ namespace RestaurantListening.Controllers.V1
 
                 return NoContent();
             }
+            catch (DbUpdateException ex) when (ex.InnerException is SqlException sqlEx)
+            {
+                switch (sqlEx.Number)
+                {
+                    case 547:
+                        return BadRequest(new { message = "Tham chiếu không hợp lệ trong khóa ngoại. Bản ghi liên quan không tồn tại." });
+                    case 2627:
+                    case 2601:
+                        return BadRequest(new { message = "Dữ liệu đã tồn tại hoặc có lỗi khác khi xóa bản ghi." });
+                    case 235:
+                        return BadRequest(new { message = "Lỗi ràng buộc dữ liệu. Vui lòng kiểm tra dữ liệu." });
+                    default:
+                        return StatusCode(500, "Lỗi máy chủ. Vui lòng thử lại sau.");
+                }
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Something Went Wrong in the {nameof(UpdateReservation)}");
@@ -153,6 +187,21 @@ namespace RestaurantListening.Controllers.V1
 
 
                 return NoContent();
+            }
+            catch (DbUpdateException ex) when (ex.InnerException is SqlException sqlEx)
+            {
+                switch (sqlEx.Number)
+                {
+                    case 547:
+                        return BadRequest(new { message = "Tham chiếu không hợp lệ trong khóa ngoại. Bản ghi liên quan không tồn tại." });
+                    case 2627:
+                    case 2601:
+                        return BadRequest(new { message = "Dữ liệu đã tồn tại hoặc có lỗi khác khi xóa bản ghi." });
+                    case 235:
+                        return BadRequest(new { message = "Lỗi ràng buộc dữ liệu. Vui lòng kiểm tra dữ liệu." });
+                    default:
+                        return StatusCode(500, "Lỗi máy chủ. Vui lòng thử lại sau.");
+                }
             }
             catch (Exception ex)
             {
